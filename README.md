@@ -1,12 +1,13 @@
-Dev tools
+Dev tools Howto
 
-Howto:
+Step 1:
 
-1. Modify Makefile.com
-	Set path of LLVM_ROOT and M2C
+	Set path of LLVM_ROOT and M2C in Makefile.com
 
-2. Use 
-	python new.py PAHT_TO_OPENCL_KERNEL
+Step 2:
+	
+	Usage:
+		python new.py PAHT_TO_OPENCL_KERNEL
 
 	e.g:
 	python new.py ../VectorAdd.cl
