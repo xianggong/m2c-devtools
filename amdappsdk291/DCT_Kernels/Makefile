@@ -20,7 +20,7 @@ asm_ir:
 	@-$(LLVM_AS) DCT_Kernels.ll -o DCT_Kernels.bc $< > log.2 2>&1 
 
 opt_ir:
-	@-$(OPT) -mem2reg DCT_Kernels.bc -o DCT_Kernels.opt.bc $< > log.3 2>&1
+	@-$(OPT) -mem2reg -inline DCT_Kernels.bc -o DCT_Kernels.opt.bc $< > log.3 2>&1
 
 dis_ir:
 	@-$(LLVM_DIS) DCT_Kernels.opt.bc -o DCT_Kernels.opt.ll $< > log.4 2>&1
