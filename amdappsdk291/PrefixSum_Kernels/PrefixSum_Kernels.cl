@@ -87,19 +87,19 @@ void group_prefixSum(__global float * output,
  */
 __kernel
 void global_prefixSum(__global float * buffer,
-                      const uint offset,
+                      const uint offst,
 					  const uint length) {
 	int localSize = get_local_size(0);
     int groupIdx  = get_group_id(0);
 
-	int sortedLocalBlocks = offset / localSize;		// sorted groups per block
+	int sortedLocalBlocks = offst / localSize;		// sorted groups per block
 	// Map the gids to unsorted local blocks.
-	int gidToUnsortedBlocks = groupIdx + (groupIdx / ((offset<<1) - sortedLocalBlocks) +1) * sortedLocalBlocks;
+	int gidToUnsortedBlocks = groupIdx + (groupIdx / ((offst<<1) - sortedLocalBlocks) +1) * sortedLocalBlocks;
 
 	// Get the corresponding global index
     int globalIdx = (gidToUnsortedBlocks*localSize + get_local_id(0));
-	if(((globalIdx+1) % offset != 0) && (globalIdx < length))
-		buffer[globalIdx] += buffer[globalIdx - (globalIdx%offset + 1)];
+	if(((globalIdx+1) % offst != 0) && (globalIdx < length))
+		buffer[globalIdx] += buffer[globalIdx - (globalIdx%offst + 1)];
 }
 
 
