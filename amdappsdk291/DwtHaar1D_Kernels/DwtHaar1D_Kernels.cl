@@ -75,7 +75,8 @@ void dwtHaar1D(
     for(uint i = 0; i < levels; ++i)
     {
 
-        float data0, data1;
+        float data0 = 0.0f;
+	float data1 = 0.0f;
         if(localId < activeThreads)
         {
             data0 = sharedArray[2 * localId];
